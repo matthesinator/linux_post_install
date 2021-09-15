@@ -28,13 +28,13 @@ elif [ -x "$(command -v pacman)" ]; then
     sudo pacman -S --needed --noconfirm base-devel
     git clone https://aur.archlinux.org/yay.git
     cd yay
-    makepkg -si
+    yes | makepkg -si
     cd ..
-    rm -r yay
+    yes | rm -r yay
 
     # Get AUR packages
-    yay -S spotify
-    yay -S visual-studio-code-bin
+    yay -S --noconfirm spotify
+    yay -S --noconfirm visual-studio-code-bin
 else
     echo "Neither pacman nor apt-get found, skipping package installation."
 fi
@@ -45,16 +45,14 @@ echo
 echo "Package lists installed. Default shell set to zsh."
 echo "Current Node.js version is 14, which is LTS."
 echo
+echo "Type 'exit' after Oh My Zsh has opened"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-read -p "Open a terminal and set up Oh My Zsh. Press any button when done." -n 1
-echo
 
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+yes | ~/.fzf/install
 
 echo
 echo "Oh My Zsh and plugins installed."

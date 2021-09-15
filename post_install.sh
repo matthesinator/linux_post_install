@@ -15,8 +15,8 @@ read -p "> " -n 1
 echo
 
 if [ "$REPLY" -eq 1 ]; then
-    cp ./dots/.vimrc "home/${USER}/.vimrc"
-    cp ./dots/.zshrc "home/${USER}/.zshrc"
+    yes | cp ./dots/.vimrc "/home/${USER}/.vimrc"
+    yes | cp ./dots/.zshrc "/home/${USER}/.zshrc"
 elif [ "$REPLY" -eq 2 ]; then
     ./create_symlinks.sh .vimrc .zshrc
 fi
